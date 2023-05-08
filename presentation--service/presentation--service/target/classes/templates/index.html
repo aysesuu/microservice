@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ajax </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+<body>
+<script>
+
+
+function init (){
+console.log("init");}
+
+
+        function send (){
+
+    console.log("send")
+
+        var kullaniciForm = {}
+        kullaniciForm["numberOne"] =document.getElementById("numberOne").value;
+        kullaniciForm["numberTwo"] = document.getElementById("numberTwo").value;
+        kullaniciForm["numberThree"] = document.getElementById("numberThree").value;
+         var xmlHttp = new XMLHttpRequest();
+
+ if(kullaniciForm["numberThree"] == "" || kullaniciForm["numberThree"] == null ) {
+               xmlHttp.open("POST","http://localhost:8095/",true);
+               }
+               else {
+                 xmlHttp.open("POST","http://localhost:8090/",true);}
+
+
+
+xmlHttp.setRequestHeader('Access-Control-Allow-Headers', '*');
+ xmlHttp.setRequestHeader("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTONS");
+               xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+               console.log(kullaniciForm)
+               xmlHttp.send(JSON.stringify(kullaniciForm));
+
+    }</script>
+
+<div style="min-height: 500px" >
+
+    <h1>Veri Girişi</h1>
+
+    <div  id = "form">
+     <label >işlem tipi seçiniz</label> <br /> <br />
+        <input type="radio" name="cube" value="cube"> küp hesap <br />
+        <input type="radio" name="square" value="square"> kare hesap <br />
+
+        <label id ="ahmet">sayi 1 girin</label>
+
+    <input type="number" onchange="init()" id="numberOne" />
+     <br><br><br>
+
+    <label>sayi 2 girin</label>
+
+    <input type="number" onchange="init()" id="numberTwo" />
+    <br><br><br>
+
+    <label>sayi 3 girin</label>
+
+    <input type="number" onchange="init()" id="numberThree" />
+    <br><br><br>
+
+
+    <button id="send" onclick="send()" >
+        Gönder
+    </button>
+    </div>
+
+</div>
+
+
+
+
+
+</body>
+</html>
